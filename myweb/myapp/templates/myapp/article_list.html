@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>News Article</title>
+	</head>
+	<body>
+		<div>
+			<h2><a href="">News Articles</a></h2>
+		</div>
+	{% for article in articles %}
+		<div>
+
+			Article
+			<p>published: {{ article.pubDate }}</p>
+				
+			<h3><a href="test_list.html">{{ article.title }}</a></h3>
+			<p>{{ article.description|linebreaksbr }}</p>
+				
+			<div>
+		</div>
+	{% endfor %}
+
+		
+	</body>
+	
+
+</html>

@@ -1,0 +1,111 @@
+{% extends 'myapp/base.html' %}
+
+{% load static %}
+
+{% block content %} 
+
+
+ <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Result
+                    
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="active">Result</li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+       <!-- Page Content -->
+    <div class="container">
+
+        
+
+        
+       <!-- Features Section -->
+        <div class="row">
+            <div class="col-sm-6">
+                <h2 class="page-header">Naive Bayes Classifier</h2>
+                <p>Search result for the Keyword: <b style="font-size: 18px;">{{ search.text }}</b></p>
+
+
+                 <div class="col-lg-6">
+                    <h3>Positive</h3>
+                    {% for p in positive %}
+                    <a href="{% url 'positive_detail' pk=p.pk %}">
+                
+                    <p>{{ p.title }}</p>
+                    </a>
+                    {% endfor %}
+                    <h3>Negative</h3>
+                    {% for n in negative %}
+                    <a href="{% url 'negative_detail' pk=n.pk %}">
+                
+                    <p>{{ n.title }}</p>
+                    </a>
+                    {% endfor %}
+                    <h3>Neutral</h3>
+                    {% for nu in neutral %}
+                    <a href="{% url 'neutral_detail' pk=nu.pk %}">
+                
+                    <p>{{ nu.title }}</p>
+                    </a>
+                    {% endfor %}
+                </div>
+            
+               
+            </div>
+            
+
+             <div class="col-sm-6">
+                <h2 class="page-header">TF_IDF Classifier</h2>
+                <p>Search result for the Keyword: <b style="font-size: 18px;">{{ search.text }}</b></p>
+
+
+                <div class="col-lg-6">
+                    <h3>Positive</h3>
+                    {% for p in tpositive %}
+                    <a href="{% url 'tpositive_detail' pk=p.pk %}">
+                
+                    <p>{{ p.title }}</p>
+                    </a>
+                    {% endfor %}
+                    <h3>Negative</h3>
+                    {% for n in tnegative %}
+                    <a href="{% url 'tnegative_detail' pk=n.pk %}">
+                
+                    <p>{{ n.title }}</p>
+                    </a>
+                    {% endfor %}
+                    <h3>Neutral</h3>
+                    {% for nu in tneutral %}
+                    <a href="{% url 'tneutral_detail' pk=nu.pk %}">
+                
+                    <p>{{ nu.title }}</p>
+                    </a>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        
+        
+    </div>
+        <!-- /.row -->
+
+
+
+        <hr>
+
+{% endblock %}

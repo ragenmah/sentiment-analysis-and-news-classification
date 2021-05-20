@@ -1,0 +1,220 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Sentiment Analysis and News Classification</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+     <link href="{% static 'css/myapp.css' %}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+
+
+    
+    
+
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+     <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header" >
+             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                 <a class="navbar-brand" href="{% url 'index' %}">
+                    <p>Sentiment Analysis and News Classification</p>
+                 </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+             <!-- Collect the nav links, forms, and other content for toggling -->
+<!--             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="about.html"><h3>About</h3></a>
+                    </li>
+                    <li>
+                        <a href="services.html"><h3>Services</h3></a>
+                    </li>
+                    <li>
+                        <a href="contact.html"><h3>Contact</h3></a>
+                    </li>
+                 
+                </ul>
+            </div>  
+ -->        </div>
+        <!-- /.container -->
+    </nav>
+            {% block content %}
+            {% endblock %}    
+    
+        <!-- Footer -->
+
+        <footer>
+            <section id="copyright">
+                
+                <div class="wrapper">
+                    
+                    &copy; Copyright 2017 by Sentiment Analysis and News Classification. All Rights Reserved.
+                </div>
+            </section>
+        </footer>
+        <!-- <footer>
+            <div class="row">
+                <div class="col-lg-12" >
+                    <p>Copyright &copy; Sentiment Analysis and News Classification 2017</p>
+                </div>
+            </div>
+        </footer> -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'js/barchart.js' %}" ></script>
+   <!--  <script src="{% static 'js/pie-chart-nb.js' %}"></script>
+    <script src="{% static 'js/pie-chart-tf-idf.js' %}"></script> -->
+
+<script type="text/javascript">
+    Highcharts.chart('pie-chart-nb', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Pie-Chart for Naive Bayes'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Naive Bayes',
+        colorByPoint: true,
+        data: [{
+            name: 'Positive',
+            y: naivepos,
+        }, {
+            name: 'Negative',
+            y: naiveneg,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Neutral',
+            y: naiveneu,
+        }]
+    }]
+});
+
+</script>
+
+<script type="text/javascript">
+    Highcharts.chart('pie-chart-tf-idf', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Pie-Chart for TF-IDF'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'TF-IDF',
+        colorByPoint: true,
+        data: [{
+            name: 'Positive',
+            y: tfidfpos,
+        }, {
+            name: 'Negative',
+            y: tfidfneg,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Neutral',
+            y: tfidfneu,
+        }]
+    }]
+});
+
+
+</script>
+
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 4000 //changes the speed
+    })
+    </script>
+
+</body>
+
+</html>
